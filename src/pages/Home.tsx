@@ -46,7 +46,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('/services/getAll', { params: { page, limit } });
+        const response = await axios.get('/services/getAll', { params: { page, limit: 4 } });
         setServices(response.data.data);
       } catch (err: any) {
         setError(err.response?.data?.error || err.message);
