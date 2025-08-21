@@ -10,7 +10,7 @@ import axios, {
 // ✅ Create a configured Axios instance
 const api: AxiosInstance = axios.create({
   // baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000',
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.liklet.com',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://www.liklet.com/api',
 
   headers: {
     'Content-Type': 'application/json',
