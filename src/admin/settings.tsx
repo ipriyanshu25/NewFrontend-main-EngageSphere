@@ -22,12 +22,12 @@ interface UpdateEmailVerifyResp { token?: string; }
 const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
 function readStoredToken() {
   if (typeof window === "undefined") return "";
-  return localStorage.getItem("engagesphere_token") ||
+  return localStorage.getItem("LikLet_token") ||
          localStorage.getItem("adminToken") ||
          "";
 }
 function writeStoredToken(token: string) {
-  localStorage.setItem("engagesphere_token", token);
+  localStorage.setItem("LikLet_token", token);
   localStorage.setItem("adminToken", token); // keep legacy key in-sync
 }
 

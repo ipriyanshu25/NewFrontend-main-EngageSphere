@@ -108,7 +108,7 @@ export default function ServicesPage() {
                     <a href="/" className="flex items-center space-x-3">
                         <Globe className="h-10 w-10 text-blue-600 drop-shadow-xl" />
                         <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
-                            EngageSphere
+                            LikLet
                         </span>
                     </a>
 
@@ -215,7 +215,7 @@ export default function ServicesPage() {
             {/* ───────────────────────────── Footer ───────────────────────────── */}
             <footer className="bg-gray-900 pb-8 text-center text-white">
                 <div className="border-t border-gray-800 pt-8 text-gray-400">
-                    &copy; {new Date().getFullYear()} EngageSphere. All rights reserved.
+                    &copy; {new Date().getFullYear()} LikLet. All rights reserved.
                 </div>
             </footer>
         </div>

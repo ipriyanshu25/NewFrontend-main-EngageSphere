@@ -1,7 +1,8 @@
 // src/admin/component/AdminSidebar.tsx
 import React, { useEffect, useState, MouseEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Users, LogOut, Briefcase, FileText, Settings } from "lucide-react";
+import { Users, LogOut, Briefcase, FileText, Settings, Menu, X } from "lucide-react";
+import { SiTask } from "react-icons/si";
 
 /** Optional callback fired when a nav link is clicked (useful to close mobile drawer). */
 export interface AdminSidebarProps {
@@ -17,13 +18,15 @@ interface NavChild {
 interface NavItem {
   href?: string;
   label: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  // Widened to support both lucide-react and react-icons
+  Icon: React.ComponentType<{ className?: string }>;
   children?: NavChild[];
 }
 
 const navItems: NavItem[] = [
   { href: "/admin/dashboard", label: "Services", Icon: Briefcase },
   { href: "/admin/client", label: "Clients", Icon: Users },
+  { href: "/admin/tasks", label: "Tasks", Icon: SiTask },
   { href: "/admin/plan", label: "Plan", Icon: Users },
   {
     label: "Documents",
@@ -47,6 +50,7 @@ export default function AdminSidebar({ onNavigate, className = "" }: AdminSideba
   const location = useLocation();
   const navigate = useNavigate();
   const [openDocs, setOpenDocs] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // mobile drawer
 
   /** Auto-open Documents group if current route matches any child. */
   useEffect(() => {
@@ -56,15 +60,29 @@ export default function AdminSidebar({ onNavigate, className = "" }: AdminSideba
     if (activeChild) setOpenDocs(true);
   }, [location.pathname]);
 
+  /** Close drawer whenever route changes (mobile). */
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  /** Enable Esc to close on mobile */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    if (isOpen) window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen]);
+
   /** Logout */
   const handleLogout = () => {
-    // clear all possible keys we've seen in code
     localStorage.removeItem("adminId");
     localStorage.removeItem("adminToken");
     localStorage.removeItem("token");
     localStorage.removeItem("isAdmin");
     navigate("/admin/login");
     onNavigate?.();
+    setIsOpen(false);
   };
 
   /** Convenience nav click wrapper */
@@ -73,11 +91,24 @@ export default function AdminSidebar({ onNavigate, className = "" }: AdminSideba
     (_e: MouseEvent<HTMLElement>) => {
       extra?.();
       onNavigate?.();
+      setIsOpen(false);
     };
 
-  return (
-    <aside className={classNames("w-64 bg-white shadow-lg p-6 flex flex-col", className)}>
-      <h2 className="text-2xl font-semibold mb-6">Admin Panel</h2>
+  /** Sidebar inner content reused by mobile + desktop */
+  const SidebarContent = () => (
+    <div className="w-64 bg-white shadow-lg p-6 flex flex-col h-full">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold">Admin Panel</h2>
+        {/* Close button (mobile drawer only) */}
+        <button
+          type="button"
+          onClick={() => setIsOpen(false)}
+          className="md:hidden p-2 rounded-md hover:bg-gray-100"
+          aria-label="Close menu"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
 
       <nav className="flex-1 space-y-2">
         {navItems.map(({ href, label, Icon, children }) => {
@@ -120,10 +151,7 @@ export default function AdminSidebar({ onNavigate, className = "" }: AdminSideba
                   <Icon className="w-5 h-5" /> {label}
                 </div>
                 <span
-                  className={classNames(
-                    "transform transition-transform",
-                    openDocs && "rotate-90"
-                  )}
+                  className={classNames("transform transition-transform", openDocs && "rotate-90")}
                   aria-hidden="true"
                 >
                   &gt;
@@ -177,6 +205,62 @@ export default function AdminSidebar({ onNavigate, className = "" }: AdminSideba
       >
         <LogOut className="w-5 h-5" /> Logout
       </button>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Mobile hamburger (floating) */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="md:hidden fixed top-4 left-4 z-40 inline-flex items-center justify-center p-2 rounded-md bg-white shadow hover:bg-gray-50"
+        aria-label="Open menu"
+        aria-controls="admin-mobile-drawer"
+        aria-expanded={isOpen}
+      >
+        <Menu className="w-5 h-5" />
+      </button>
+
+      {/* Mobile drawer + backdrop */}
+      <div
+        id="admin-mobile-drawer"
+        className={classNames(
+          "md:hidden fixed inset-0 z-40",
+          isOpen ? "pointer-events-auto" : "pointer-events-none"
+        )}
+        role="dialog"
+        aria-modal="true"
+      >
+        {/* Backdrop */}
+        <div
+          className={classNames(
+            "absolute inset-0 transition-opacity",
+            isOpen ? "bg-black/40 opacity-100" : "bg-black/0 opacity-0"
+          )}
+          onClick={() => setIsOpen(false)}
+        />
+
+        {/* Panel */}
+        <aside
+          className={classNames(
+            "absolute inset-y-0 left-0 w-72 max-w-full transform transition-transform",
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          )}
+        >
+          <SidebarContent />
+        </aside>
+      </div>
+
+      {/* Desktop sidebar */}
+      <aside
+        className={classNames(
+          "hidden md:flex md:static md:translate-x-0 h-screen sticky top-0",
+          className
+        )}
+      >
+        <SidebarContent />
+      </aside>
+    </>
   );
 }

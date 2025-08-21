@@ -73,7 +73,7 @@ const Refund: React.FC = () => {
             {
               title: "6. Contact Information",
               content:
-                "For refund requests or questions about our refund policy, please contact our support team at support@engagesphere.com.",
+                "For refund requests or questions about our refund policy, please contact our support team at support@LikLet.com.",
             },
           ].map(({ title, content, list }, idx) => (
             <section key={idx}>

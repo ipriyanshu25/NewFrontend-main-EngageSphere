@@ -49,7 +49,7 @@ const About: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide">About EngageSphere</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide">About LikLet</h1>
           <p className="text-lg font-semibold">
             Empowering creators and businesses to reach their full potential through authentic social media growth.
           </p>
@@ -65,7 +65,7 @@ const About: React.FC = () => {
           <GlassContainer className={sectionClasses}>
             <h2 className="text-2xl font-extrabold mb-6 tracking-wide">Our Story</h2>
             <p className="mb-6 leading-relaxed">
-              Founded in 2023, EngageSphere emerged from a simple observation: genuine social media growth shouldn't be complicated or risky.
+              Founded in 2023, LikLet emerged from a simple observation: genuine social media growth shouldn't be complicated or risky.
               Our founders, having experienced the challenges of building online presence firsthand, set out to create a service that would provide
               authentic engagement while maintaining the highest standards of safety and quality.
             </p>
@@ -170,7 +170,7 @@ const About: React.FC = () => {
       {/* Global Footer */}
       <footer className="bg-gray-900 pb-8 text-center text-white mt-10">
         <div className="border-t border-gray-800 pt-8 text-gray-400 ">
-          &copy; {new Date().getFullYear()} EngageSphere. All rights reserved.
+          &copy; {new Date().getFullYear()} LikLet. All rights reserved.
         </div>
       </footer>
     </div>

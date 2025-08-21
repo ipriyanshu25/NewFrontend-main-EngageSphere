@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center gap-3 group hover:scale-105 transition-transform">
             <Globe className="h-10 w-10 text-blue-600 drop-shadow-xl" />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
-              EngageSphere
+              LikLet
             </span>
           </Link>
 
@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
             <Link to="/" className="flex items-center gap-3 group hover:scale-105 transition-transform">
               <Globe className="h-10 w-10 text-black drop-shadow-xl" />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
-                EngageSphere
+                LikLet
               </span>
             </Link>
 

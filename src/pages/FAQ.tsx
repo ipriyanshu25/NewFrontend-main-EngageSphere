@@ -8,11 +8,11 @@ const FAQPage: React.FC = () => {
       title: "General Questions",
       questions: [
         {
-          q: "What is EngageSphere?",
-          a: "EngageSphere is a premium social media growth service that helps individuals and businesses increase their online presence through authentic engagement methods."
+          q: "What is LikLet?",
+          a: "LikLet is a premium social media growth service that helps individuals and businesses increase their online presence through authentic engagement methods."
         },
         {
-          q: "Is EngageSphere safe to use?",
+          q: "Is LikLet safe to use?",
           a: "Yes, we use only safe and compliant methods that adhere to each platform's terms of service. We never require passwords and protect your account security."
         },
         {

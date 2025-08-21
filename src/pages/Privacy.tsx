@@ -80,7 +80,7 @@ const Privacy: React.FC = () => {
             {
               title: "7. Contact Us",
               content:
-                "For privacy-related inquiries, please contact our Data Protection Officer at privacy@engagesphere.com.",
+                "For privacy-related inquiries, please contact our Data Protection Officer at privacy@LikLet.com.",
             },
           ].map(({ title, content, list }, idx) => (
             <section key={idx}>

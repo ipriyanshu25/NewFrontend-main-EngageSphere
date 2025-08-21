@@ -1,5 +1,5 @@
 // App.tsx
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import RootLayout from './layouts/RootLayout';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -32,6 +32,7 @@ import ClientPage from './admin/client';
 import Settings from './admin/settings';
 import Plan from './admin/plan';
 import EditPlanPage from './admin/edit-plan';
+import Tasks from './admin/tasks';
 
 // ⤵️ New Admin Page
 import UserSerivesPage from './admin/userSerives';
@@ -109,12 +110,11 @@ function App() {
               <Route path="settings" element={<Settings />} />
               <Route path="plan" element={<Plan />} />
               <Route path="edit-plan/:planId" element={<EditPlanPage />} />
-              {/* ⤵️ New route for the user subscriptions page */}
               <Route path="user-services/:userId" element={<UserSerivesPage />} />
+              <Route path="tasks" element={<Tasks />} />
             </Route>
           </Route>
 
-          {/* Fallback */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

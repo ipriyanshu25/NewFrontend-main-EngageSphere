@@ -60,7 +60,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ onViewServices }) => {
         const apiSubs = data?.subscriptions || {};
         setSubs({
           total: Number(apiSubs.total ?? 0),
-          active: Number(apiSubs.active ?? 0),       // Status === 0
+          active: Number(apiSubs.active ?? 0), // Status === 0
           completed: Number(apiSubs.completed ?? 0), // Status === 1
         });
       } catch (err: any) {
@@ -88,7 +88,8 @@ const UserProfile: React.FC<UserProfileProps> = ({ onViewServices }) => {
   }) => {
     if (!userId) return;
     try {
-      await Swal.fire({
+      // 🚫 FIX: don't await the loading modal; otherwise the flow blocks and API never runs
+      Swal.fire({
         title: 'Saving…',
         allowEscapeKey: false,
         allowOutsideClick: false,
@@ -143,7 +144,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ onViewServices }) => {
 
   return (
     <div className="min-h-screen bg-sky-50 px-4 sm:px-6 lg:px-8 pt-8 md:pt-12">
-      <div className="mx-auto max-w-6xl space-y-6 md:space-y-8">
+      <div className="mx-auto max-w-6xl space-y-6 md:space-y-8 pt-16">
         {/* Page Header */}
         <header className="flex flex-col gap-3">
           <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">Your Profile</h1>
@@ -321,7 +322,8 @@ const EditProfileModal: React.FC<{
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* ✅ Always keep Old/New password on the same row */}
+          <div className="grid grid-cols-2 gap-4 items-start">
             <div>
               <label className="block text-sm text-gray-600 mb-1">Old Password (required if changing)</label>
               <input

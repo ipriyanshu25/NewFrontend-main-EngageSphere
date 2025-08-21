@@ -530,7 +530,7 @@ const Auth: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white relative overflow-hidden px-4">
       <Link to="/" className="absolute top-4 left-4 z-20 flex items-center space-x-2">
-        <span className="text-blue-600 text-2xl font-bold">EngageSphere</span>
+        <span className="text-blue-600 text-2xl font-bold">LikLet</span>
       </Link>
 
       <DecorativeBackground />

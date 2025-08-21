@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
               className="flex items-center space-x-3 mb-4 hover:opacity-90"
             >
               <Globe className="w-8 h-8" />
-              <span className="text-xl font-bold">EngageSphere</span>
+              <span className="text-xl font-bold">LikLet</span>
             </Link>
             <p className="text-gray-400 mb-6">
               Your premier destination for authentic social media engagement and
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
 
         {/* Footer Bottom */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} EngageSphere. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} LikLet. All rights reserved.</p>
         </div>
       </div>
     </footer>

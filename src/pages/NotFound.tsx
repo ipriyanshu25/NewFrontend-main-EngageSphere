@@ -39,7 +39,7 @@ const NotFound: React.FC = () => {
             <span className="text-lg sm:text-2xl font-bold text-white">E</span>
           </div>
           <h3 className="text-base sm:text-lg font-semibold text-white/90 tracking-wide">
-            EngageSphere
+            LikLet
           </h3>
         </div>
 
@@ -98,7 +98,7 @@ const NotFound: React.FC = () => {
       {/* Footer */}
       <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 text-center z-10 px-4">
         <p className="text-white/40 text-xs sm:text-sm">
-          © 2025 EngageSphere. All rights reserved.
+          © 2025 LikLet. All rights reserved.
         </p>
       </div>
     </div>

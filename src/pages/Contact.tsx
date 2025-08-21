@@ -179,7 +179,7 @@ const Contact: React.FC = () => {
               {
                 icon: <Mail className="w-5 h-5 text-blue-600" />,
                 title: 'Email',
-                info: 'support@engagesphere.com',
+                info: 'support@LikLet.com',
               },
               {
                 icon: <Phone className="w-5 h-5 text-blue-600" />,
@@ -215,7 +215,7 @@ const Contact: React.FC = () => {
       {/* Global Footer */}
       <footer className="bg-gray-900 pb-8 text-center text-white">
         <div className="border-t border-gray-800 pt-8 text-gray-400">
-          &copy; {new Date().getFullYear()} EngageSphere. All rights reserved.
+          &copy; {new Date().getFullYear()} LikLet. All rights reserved.
         </div>
       </footer>
     </div>

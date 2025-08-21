@@ -180,7 +180,6 @@ const ActiveServices: React.FC<ActiveServicesProps> = ({ onBack, onViewCompleted
               </button>
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Active Services</h1>
-                <p className="text-slate-600 mt-1 text-sm">Live data from /subscription/activeService</p>
               </div>
             </div>
 

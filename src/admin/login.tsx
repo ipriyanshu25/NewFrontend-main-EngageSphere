@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
 import { post } from '../api/axios';
 
-const ADMIN_TITLE = 'EngageSphere Admin';
+const ADMIN_TITLE = 'LikLet Admin';
 
 type JwtPayload = { adminId: string; email: string; exp: number };
 

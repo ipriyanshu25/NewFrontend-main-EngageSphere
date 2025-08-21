@@ -260,7 +260,7 @@ useEffect(() => {
           <div>
             <Link to="/" className="flex items-center space-x-3 mb-4 hover:opacity-90">
               <Globe className="w-8 h-8" />
-              <span className="text-xl font-semibold">EngageSphere</span>
+              <span className="text-xl font-semibold">LikLet</span>
             </Link>
             <p className="text-blue-100 mb-6">
               Your go-to partner for genuine social media growth and engagement.
@@ -307,7 +307,7 @@ useEffect(() => {
           ))}
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-black-200">
-          &copy; {new Date().getFullYear()} EngageSphere. All rights reserved.
+          &copy; {new Date().getFullYear()} LikLet. All rights reserved.
         </div>
       </footer>
     </div>

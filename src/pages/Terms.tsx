@@ -13,7 +13,7 @@ const Terms: React.FC = () => {
         >
           <h1 className="text-4xl font-bold">Terms of Service</h1>
           <p className="text-white/80 mt-2 text-lg">
-            Know the rules of the realm before joining EngageSphere.
+            Know the rules of the realm before joining LikLet.
           </p>
         </motion.div>
 
@@ -28,12 +28,12 @@ const Terms: React.FC = () => {
             {
               title: "1. Acceptance of Terms",
               content:
-                "By accessing and using EngageSphere's services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.",
+                "By accessing and using LikLet's services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.",
             },
             {
               title: "2. Service Description",
               content:
-                "EngageSphere provides social media growth services across various platforms. Our services are designed to help increase your social media presence through authentic engagement methods.",
+                "LikLet provides social media growth services across various platforms. Our services are designed to help increase your social media presence through authentic engagement methods.",
             },
             {
               title: "3. User Obligations",
@@ -57,7 +57,7 @@ const Terms: React.FC = () => {
             {
               title: "6. Limitation of Liability",
               content:
-                "EngageSphere is not liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.",
+                "LikLet is not liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.",
             },
             {
               title: "7. Changes to Terms",
@@ -67,7 +67,7 @@ const Terms: React.FC = () => {
             {
               title: "8. Contact Information",
               content:
-                "For questions about these Terms of Service, please contact us at legal@engagesphere.com.",
+                "For questions about these Terms of Service, please contact us at legal@LikLet.com.",
             },
           ].map(({ title, content, list }, idx) => (
             <section key={idx}>

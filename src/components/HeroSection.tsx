@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
           </span>
         </h1>
           <p className="text-2xl md:text-3xl mb-12 leading-relaxed">
-            <span className="font-semibold">EngageSphere</span>{' '}
+            <span className="font-semibold">LikLet</span>{' '}
             helps you build your online empire with authentic and organic engagement across major platforms.
           </p>
           <Link
