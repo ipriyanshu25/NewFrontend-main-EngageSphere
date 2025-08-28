@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, LogOut, Globe, User } from 'lucide-react';
+import { Menu, X, LogOut, User } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/**
- * Fixed, translucent navbar (glass‑morphism) with Lexend font
- * --------------------------------------------------
- * – Admin logic removed
- * – Links: Services | About Us | Contact | Learn More
- * – Auth controls: Profile icon with tooltip showing user name | Logout | Sign In button
- * – Mobile drawer mirrors desktop links
- */
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated, logout, user } = useAuth();
 
-  // Close drawer on route change
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
@@ -36,14 +27,19 @@ const Navbar: React.FC = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 font-lexend">
       {/* Main bar */}
-      <div className="w-full border-b border-white/20 bg-white/80 backdrop-blur-md">
+      <div className="w-full border-b border-white/20 bg-white backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4 md:py-5">
           {/* Brand */}
           <Link to="/" className="flex items-center gap-3 group hover:scale-105 transition-transform">
-            <Globe className="h-10 w-10 text-blue-600 drop-shadow-xl" />
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
-              LikLet
-            </span>
+            {/* Logo from public/logo.png */}
+            <img
+              src="/logo.png"
+              alt="LikLet logo"
+              className="h-10 w-10 object-contain drop-shadow-xl"
+              loading="eager"
+            />
+            <span className="text-blue-900 text-4xl font-bold">LikLet</span>
+
           </Link>
 
           {/* Desktop Navigation */}
@@ -107,9 +103,14 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.35 }}
             className="fixed top-0 left-0 w-full h-full bg-white/70 backdrop-blur-lg z-50 p-8 flex flex-col space-y-8 text-black font-lexend"
           >
-            {/* Drawer header */}
+            {/* Drawer header with logo */}
             <Link to="/" className="flex items-center gap-3 group hover:scale-105 transition-transform">
-              <Globe className="h-10 w-10 text-black drop-shadow-xl" />
+              <img
+                src="/logo.png"
+                alt="LikLet logo"
+                className="h-10 w-10 object-contain drop-shadow-xl"
+                loading="eager"
+              />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
                 LikLet
               </span>
