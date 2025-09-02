@@ -54,6 +54,7 @@ function App() {
           <Route path="refund" element={<Refund />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="unauthorized" element={<Unauthorized />} />
+          <Route path="services" element={<ServiceList />} />
 
           {/* Authenticated User Routes */}
           <Route
@@ -69,14 +70,6 @@ function App() {
             element={
               <ProtectedRoute>
                 <ServiceDetail />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="services"
-            element={
-              <ProtectedRoute>
-                <ServiceList />
               </ProtectedRoute>
             }
           />

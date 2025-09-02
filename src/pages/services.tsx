@@ -104,9 +104,15 @@ export default function ServicesPage() {
         <div className="flex min-h-screen flex-col bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50 text-gray-900">
             {/* ───────────────────────────── Header ───────────────────────────── */}
             <header className="sticky top-0 z-50 border-b border-white/20 bg-white/70 backdrop-blur-lg">
-                <div className="container mx-auto flex items-center justify-between px-4 py-3">
+                <div className="container flex items-center justify-between px-4 py-3">
                     <a href="/" className="flex items-center space-x-3">
-                        <Globe className="h-10 w-10 text-blue-600 drop-shadow-xl" />
+                        {/* Logo from public/logo.png */}   
+                        <img
+                            src="/logo.png"
+                            alt="LikLet logo"
+                            className="h-20 w-20 object-contain drop-shadow-xl"
+                            loading="eager"
+                        />  
                         <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
                             LikLet
                         </span>
@@ -133,7 +139,7 @@ export default function ServicesPage() {
                         ) : (
                             <button
                                 onClick={() => setShowSearch(true)}
-                                className="rounded-full p-2 hover:bg-gray-200"
+                                className="rounded-full p-2 hover:bg-gray-200 "
                             >
                                 <Search className="h-6 w-6 text-gray-600" />
                             </button>

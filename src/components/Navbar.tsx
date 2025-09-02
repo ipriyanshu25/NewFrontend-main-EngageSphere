@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
             <img
               src="/logo.png"
               alt="LikLet logo"
-              className="h-10 w-10 object-contain drop-shadow-xl"
+              className="h-20 w-20 object-contain drop-shadow-xl"
               loading="eager"
             />
             <span className="text-blue-900 text-4xl font-bold">LikLet</span>
