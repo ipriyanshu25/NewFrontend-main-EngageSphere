@@ -1,3 +1,5 @@
+// src/contexts/AuthContext.tsx
+
 import React, {
   createContext,
   useContext,
@@ -6,6 +8,7 @@ import React, {
   ReactNode,
 } from 'react';
 import axios from '../api/axios';
+import { signInWithGooglePopup } from '../lib/firebase';
 
 /* ------------------------------------------------------------------ */
 /* Types                                                               */
@@ -15,9 +18,9 @@ export interface User {
   name      : string;
   email     : string;
   phone     : string;
-  countryId : string;   // <-- NEW
-  callingId : string;   // <-- NEW (dial-code option _id)
-  gender    : string;
+  countryId : string;   // <-- country _id (backend expects this for local users)
+  callingId : string;   // <-- dial-code _id
+  gender    : string;   // "0" | "1" | "2" | ""
   createdAt : string;
 }
 
@@ -25,8 +28,8 @@ interface RegisterData {
   name      : string;
   email     : string;
   phone     : string;
-  countryId : string;   // <-- NEW
-  callingId : string;   // <-- NEW
+  countryId : string;
+  callingId : string;
   gender    : string;
   password  : string;
 }
@@ -46,6 +49,7 @@ interface AuthContextType {
   requestOtp     : RequestOtp;
   verifyOtp      : VerifyOtp;
   setUser        : React.Dispatch<React.SetStateAction<User | null>>;
+  googleLogin    : () => Promise<boolean>; // NEW
 }
 
 /* ------------------------------------------------------------------ */
@@ -78,7 +82,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoad] = useState(true);
 
-  /* hydrate session ------------------------------------------------ */
+  /* Hydrate session ------------------------------------------------ */
   useEffect(() => {
     const t  = localStorage.getItem('token');
     const id = localStorage.getItem('userId');
@@ -92,13 +96,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   /* OTP ------------------------------------------------------------ */
   const requestOtp: RequestOtp = async (email) => {
-    try { await axios.post('/user/request-otp', { email }); return true; }
-    catch { return false; }
+    try {
+      await axios.post('/user/request-otp', { email });
+      return true;
+    } catch {
+      return false;
+    }
   };
 
   const verifyOtp: VerifyOtp = async (email, otp) => {
-    try { await axios.post('/user/verify-otp', { email, otp }); return true; }
-    catch { return false; }
+    try {
+      await axios.post('/user/verify-otp', { email, otp });
+      return true;
+    } catch {
+      return false;
+    }
   };
 
   /* Register (auto-login) ----------------------------------------- */
@@ -111,7 +123,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
-  /* Login ---------------------------------------------------------- */
+  /* Email/Password Login ------------------------------------------ */
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const { data } = await axios.post<{
@@ -129,7 +141,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         data.user?.name
           ? {
               id        : data.userId,
-              name      : data.user.name,
+              name      : data.user.name!,
               email     : data.user.email     ?? email,
               phone     : data.user.phone     ?? '',
               countryId : data.user.countryId ?? '',
@@ -139,6 +151,46 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             }
           : buildFallbackUser(data.userId, email),
       );
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  /* Google Login --------------------------------------------------- */
+  const googleLogin = async (): Promise<boolean> => {
+    try {
+      // 1) Get Firebase ID token from client
+      const idToken = await signInWithGooglePopup();
+
+      // 2) Exchange for your app JWT and user object
+      const { data } = await axios.post<{
+        token : string;
+        userId: string;
+        user  : Partial<User> & {
+          picture?: string;
+          emailVerified?: boolean;
+          authProvider?: string;
+        };
+      }>('/user/google', { idToken });
+
+      // 3) Persist session
+      localStorage.setItem('token',  data.token);
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('email',  data.user?.email ?? '');
+
+      setToken(data.token);
+      setUser({
+        id        : data.userId,
+        name      : data.user.name ?? (data.user.email?.split('@')[0] ?? 'User'),
+        email     : data.user.email ?? '',
+        phone     : data.user.phone ?? '',
+        countryId : data.user.countryId ?? '',
+        callingId : data.user.callingId ?? '',
+        gender    : data.user.gender ?? '',
+        createdAt : data.user.createdAt ?? new Date().toISOString(),
+      });
+
       return true;
     } catch {
       return false;
@@ -164,6 +216,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     requestOtp,
     verifyOtp,
     setUser,
+    googleLogin, // NEW
   };
 
   return <AuthContext.Provider value={ctxValue}>{children}</AuthContext.Provider>;

@@ -113,7 +113,7 @@ export default function ServicesPage() {
                             className="h-20 w-20 object-contain drop-shadow-xl"
                             loading="eager"
                         />  
-                        <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
+                        <span className="text-blue-900 bg-clip-text text-4xl font-bold ">
                             LikLet
                         </span>
                     </a>

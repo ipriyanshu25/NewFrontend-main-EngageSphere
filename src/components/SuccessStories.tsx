@@ -12,7 +12,7 @@ const SuccessStories = () => {
       revenue: "$24K",
       growth: "300%",
       timeframe: "6 months",
-      quote: "Collabglam transformed my fitness content into a thriving business. The dashboard helped me reach more brands and optimize my content strategy.",
+      quote: "Liklet transformed my fitness content into a thriving business. The dashboard helped me reach more brands and optimize my content strategy.",
       results: [
         "Increased monthly revenue from $2K to $45K",
         "Grew follower base by 300% in 6 months",
@@ -26,10 +26,10 @@ const SuccessStories = () => {
       revenue: "$10K",
       growth: "330%",
       timeframe: "4 months",
-      quote: "The CollabGlam saved me hours of manual work. Now I can focus on creating quality content while Collabglam handles finding deal.",
+      quote: "The Liklet saved me hours of manual work. Now I can focus on creating quality content while Liklet handles finding deal.",
       results: [
         "Built a tech education empire worth $120K annually",
-        "Easy Brand findings and deal management with Collabglam",
+        "Easy Brand findings and deal management with Liklet",
         "Created passive income streams through course sales"
       ]
     },
@@ -40,7 +40,7 @@ const SuccessStories = () => {
       revenue: "$23K",
       growth: "230%",
       timeframe: "2 months",
-      quote: "As an Tiktok Influencer, I never thought I could make this much from Collabglam. Collabglam's platform made my revenue & growth simple and effective.",
+      quote: "As an Tiktok Influencer, I never thought I could make this much from Liklet. Liklet's platform made my revenue & growth simple and effective.",
       results: [
         "Collaborated with multiple brands in 2 months",
         "Built a community of recurring Brands",
@@ -67,7 +67,7 @@ const SuccessStories = () => {
             Success Stories
           </h2>
           <p className="text-xl text-white max-w-3xl mx-auto">
-            Real Influencers, real results. See how Collabglam is transforming lives and businesses.
+            Real Influencers, real results. See how Liklet is transforming lives and businesses.
           </p>
         </div>
 

@@ -49,7 +49,7 @@ const About: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide">About LikLet</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 mt-5 tracking-wide">About LikLet</h1>
           <p className="text-lg font-semibold">
             Empowering creators and businesses to reach their full potential through authentic social media growth.
           </p>

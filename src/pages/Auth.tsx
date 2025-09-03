@@ -1,3 +1,5 @@
+// src/pages/Auth.tsx
+
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React, {
   useState,
@@ -21,6 +23,7 @@ import {
 } from 'lucide-react';
 import ReactSelect, { SingleValue } from 'react-select';
 import { get } from '../api/axios';
+import { FcGoogle } from 'react-icons/fc'; // ✅ NEW
 
 /* ------------------------------------------------------------------ */
 /* Country types & helpers                                            */
@@ -422,7 +425,7 @@ const Auth: React.FC = () => {
 
   const [countries, setCountries] = useState<Country[]>([]);
   const nav = useNavigate();
-  const { login, register, requestOtp, verifyOtp, isAuthenticated } = useAuth();
+  const { login, register, requestOtp, verifyOtp, isAuthenticated, googleLogin } = useAuth(); // ✅ include googleLogin
 
   /* country load */
   useEffect(() => {
@@ -526,12 +529,34 @@ const Auth: React.FC = () => {
     setLoad(false);
   };
 
+  // ✅ Google flow
+  const onGoogle = async () => {
+    setLoad(true);
+    setMsg(null);
+    const ok = await googleLogin();
+    if (ok) {
+      flash('success', 'Logged in with Google!');
+      nav('/', { replace: true });
+    } else {
+      flash('error', 'Google sign-in failed.');
+    }
+    setLoad(false);
+  };
+
   /* ---------------------------------------------------------------- */
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white relative overflow-hidden px-4">
-      <Link to="/" className="absolute top-4 left-4 z-20 flex items-center space-x-2">
-        <span className="text-blue-600 text-2xl font-bold">LikLet</span>
-      </Link>
+    <div className="min-h-screen flex items-center justify-center bg-white-1 relative overflow-hidden px-4">
+      <Link to="/" className="absolute top-20 left-100 z-20 flex items-center hover:scale-105 transition-transform">
+                  {/* Logo from public/logo.png */}
+                  <img
+                    src="/logo.png"
+                    alt="LikLet logo"
+                    className="h-20 w-30 object-contain drop-shadow-xl"
+                    loading="eager"
+                  />
+                  <span className="text-blue-800 text-6xl font-bold">LikLet</span>
+      
+                </Link>
 
       <DecorativeBackground />
 
@@ -612,6 +637,23 @@ const Auth: React.FC = () => {
               onRegister={onRegister}
             />
           )}
+
+          {/* ✅ Social login (shown for both login & register modes) */}
+          <div className="my-6 flex items-center">
+            <div className="flex-1 h-px bg-gray-200" />
+            <span className="px-3 text-xs uppercase tracking-wider text-gray-400">or</span>
+            <div className="flex-1 h-px bg-gray-200" />
+          </div>
+          <button
+            type="button"
+            onClick={onGoogle}
+            disabled={loading}
+            className="w-full py-3 rounded-xl font-bold bg-white border border-gray-200
+                       shadow-sm hover:shadow-md flex items-center justify-center gap-3"
+          >
+            <FcGoogle size={22} />
+            {loading ? 'Connecting…' : 'Continue with Google'}
+          </button>
 
           <div className="mt-6 flex justify-between text-sm text-gray-600">
             {mode === 'login' ? (

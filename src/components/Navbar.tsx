@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
                 className="h-10 w-10 object-contain drop-shadow-xl"
                 loading="eager"
               />
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
+              <span className="text-blue-900 bg-clip-text text-3xl font-bold">
                 LikLet
               </span>
             </Link>
@@ -124,9 +124,6 @@ const Navbar: React.FC = () => {
             </Link>
             <Link to="/contact" className="text-2xl font-semibold" onClick={() => setIsOpen(false)}>
               Contact
-            </Link>
-            <Link to="/learn-more" className="text-2xl font-semibold" onClick={() => setIsOpen(false)}>
-              Learn More
             </Link>
 
             <div className="flex flex-col gap-6 mt-auto">

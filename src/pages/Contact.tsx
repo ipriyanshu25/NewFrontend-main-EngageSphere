@@ -72,7 +72,7 @@ const Contact: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl font-bold mb-3 text-blue-900 mt-5">
+          <h1 className="text-4xl font-bold mb-3 text-blue-900 mt-14">
             Contact Our Team
           </h1>
           <p className="text-lg text-blue-700">

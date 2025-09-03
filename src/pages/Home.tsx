@@ -283,7 +283,12 @@ const Home: React.FC = () => {
                 href="/"
                 className="flex items-center space-x-3 mb-4 hover:opacity-90"
               >
-                <Globe className="w-8 h-8" />
+                <img
+                  src="/logo.png"
+                  alt="LikLet logo"
+                  className="h-10 w-10 object-contain drop-shadow-xl"
+                  loading="eager"
+                />
                 <span className="text-xl font-bold">LikLet</span>
               </a>
               <p className="text-gray-400 mb-6">
